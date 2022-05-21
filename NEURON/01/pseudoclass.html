@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudoclass</title>
+    <style>
+        a{
+            color: red;
+        }
+        a:visited{
+            color: black;
+        }
+        a:hover{
+            color: green;
+        }
+        a:active{
+            color: blue;
+        }
+        p::first-letter{
+            font-size: 45px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- Pseudo Class -->
+    This <a href="#">Link</a> is used to display nothing.
+
+    <!-- Pseudo Element -->
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla erat dolor, ullamcorper in ultricies eget,fermentum rhoncus leo. Curabitur eu mi vitae metus posuere laoreet. Eam facilis omittantur at, usu efficiantur neglegentur delicatissimi et, in per vero splendide persequeris. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+</body>
+</html>
