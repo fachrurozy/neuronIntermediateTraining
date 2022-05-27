@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Data Type, Pass Value & Reference</title>
+</head>
+<body>
+    <script>
+        // Pass value by reference
+        var a = 1;
+        var b = 2;
+        var c = a+b;
+        console.log(c);
+
+        //type data primitif
+        var nama = "fachrurrozy"; // string
+        var umur = 32; // integer
+        var sudahMenikah = true; // boolean
+
+        console.log(nama);
+        console.log(umur);
+        console.log(sudahMenikah);
+
+        const person = {
+            first_name:'Ujang',
+            last_name:'Laksono'
+        }
+        console.log(typeof person);
+        
+        var anak = ['anak 1', 'anak 2']; // array
+        console.log(anak);
+        
+        const functionExample=(name)=>{
+            return 'Hello, world ' + name;
+        }
+        console.log(typeof functionExample);
+        
+        var greeting = functionExample('Fachrurrozy');
+        console.log(greeting);
+
+        const functionCalculator=(var1, var2, var3)=>{
+            if(var2 === '+'){
+                return var1 + var3;
+            }else if(var2 === '-'){
+                return var1 - var3;
+            }else if(var2 === '*'){
+                return var1 * var3;
+            }else if(var2 === '/'){
+                return var1 / var3;
+            }else if(var2 === '%'){
+                return var1 % var3;
+            }
+        }
+        var getCalculator = functionCalculator(4, '%', 2);
+        console.log(getCalculator);
+    </script>
+</body>
+</html>
