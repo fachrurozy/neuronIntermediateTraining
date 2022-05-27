@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Event</title>
+</head>
+<body onLoad="greeting()">
+    <input type="text" name="nama" id="nama" onkeyup="ketik()">
+    <br>Nama Saya Adalah : <span class="nama"></span>
+    <select name="negara" id="negara" onchange="pilihNegara()">
+        <option value="ID">Indonesia</option>
+        <option value="MY">Malaysia</option>
+        <option value="US">United States</option>
+    </select>
+
+    <button onclick="klikSaya()">Klik Saya</button>
+    <img src="../01/images/img1.png" id="gambarKu" width="200px" onmouseover="gantiWarna()">
+
+    <script>
+        // IIFE [Immediately Invoked Function Expression]
+        (function(nama) {
+            console.log('Immediate Invoke Function ' + nama);
+        })('fachrurrozy');
+
+        // define function
+        hello = function() {
+            console.log('say hello');
+        }
+
+        // define arrow function
+        hello2 = ()=> {
+            console.log('hello dengan arrow function');
+        }
+
+        function greeting() {
+            alert("Greetings Humans!");
+        }
+
+        function gantiWarna() {
+            console.log("Ganti Warna!");
+            var gambar = document.getElementById("gambarKu");
+            gambar.style.visibility = "hidden";
+        }
+
+        function klikSaya() {
+            alert("Anda Melakukan Klik Button");
+            var gambar = document.getElementById("gambarKu");
+            gambar.style.visibility = "visible";
+        }
+
+        function pilihNegara() {
+            alert("Anda Memilih Negara " + document.getElementById("negara").value);
+        }
+
+        function ketik(){
+            var nama = document.getElementById("nama").value;
+            console.log('Anda Melakukan Ketikan ' + nama);
+        }
+    </script>
+</body>
+</html>
