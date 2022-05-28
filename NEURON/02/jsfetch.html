@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Fetch Data</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0/css/bootstrap.min.css" integrity="sha256-">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div id="output"></div>
+        </div>
+    </div>
+
+    <script>
+        fetch('https://reqres.in/api/users?page=2')
+        // kita buat response menjadi json
+        .then((response) => response.json())
+        // lalu datanya kita ambil dan kita masukkan ke p id output
+        .then((data) => {
+            //kita buat variabel output
+            let output = '<H2>Users</h2>';
+            // kita console log agar mengetahui apakah datanya sudah masuk atau belum
+            console.log(data.data);
+
+            // forEach ini adalah looping dan dinamakan user
+            data.data.forEach((user) => {
+                // kita tambahkan output -nya jangan lupa gunakan backslash `` yang disebelah angka nomer 1
+                // kita panggil id name email didapat dari users.json
+                output += `
+                <div class="col-md-2">
+                    <img src='${user.avatar}'>
+                    <p>Name: ${user.first_name}</p>
+                    <p>Email: ${user.email}</p>
+                </div
+                `;
+            })
+            // kita panggil id output agar bisa ditampilkan ke browser saat di klik
+            document.getElementById('output').innerHTML = output;
+        })
+        // membuat catch jadi kalau ada yang error langsung ketahuan
+        .catch((err) => console.log(err));
+    </script>
+</body>
+</html>

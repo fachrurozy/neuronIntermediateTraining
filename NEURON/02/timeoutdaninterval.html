@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contoh SetTimeOut dan SetInterval pada Javascript</title>
+</head>
+<body>
+    Silahkan tunggu 5 detik untuk menampilkan pesan :
+    <h2 id="message"></h2>
+
+    <button id="btnHapus" type="button">Hapus Text</button>
+    <hr>
+
+    <div id="welcomeText"></div>
+    <script>
+        // Contoh Implementasi SetTimeOut
+        document.getElementById("btnHapus").addEventListener("click",hapusText);
+        const panggil = setTimeout(greeting, 5000);
+
+        function greeting(){
+            document.getElementById("message").innerHTML = "Hello Selamat Datang!"
+        }
+
+        function hapusText(){
+            alert("tunggu 5 detik");
+            setTimeout(function(){
+                document.getElementById("message").style.visibility = "hidden";
+            }, 5000);
+        }
+
+        // Contoh Implementasi SetInterval
+        var i = 1;
+        var interval = setInterval(function(){
+            document.getElementById("welcomeText").innerHTML += "Welcome Fachrurrozy <br>";
+            if(i > 2){
+                clearInterval(interval);
+            }
+            i++;
+        }, 5000);
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Storage dan Local Storage</title>
+</head>
+<body>
+    <div id="first_name"></div>
+    <div id="expired_login"></div>
+    <script>
+        // set untuk menambahkan item : setItem(key,value)
+        // get untuk mengambil value dari sebuah item : getItem(key)
+        // remove untuk menghapus item dari local storage : removeItem(key)
+        localStorage.setItem('first_name','fachrurrozy');
+        document.getElementById('first_name').innerHTML = localStorage.getItem('first_name');
+        //localStorage.removeItem('first_name');
+
+        // session storage punya fungsional yang mirip dari segi coding
+        sessionStorage.setItem('expired_time_login','2022-05-28');
+        document.getElementById('expired_login').innerHTML = sessionStorage.getItem('expired_time_login');
+        //sessionStorage.removeItem('expired_time_login');
+    </script>
+    
+
+</body>
+</html>

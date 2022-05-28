@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOP Javascript</title>
+</head>
+<body>
+    
+    <script>
+        class Hewan{
+            // constructor
+            constructor (name, jumlahKaki){
+                this.name = name;
+                this.jumlahKaki = jumlahKaki;
+            }
+
+            // method setter
+            setName (name){
+                this.name = name;
+            }
+
+            // method getter
+            getName () {
+                return this.name;
+            }
+
+            // method
+            speak(){
+                console.log('speak');
+            }
+            eat() {
+                console.log('eat');
+            }
+            sleep() {
+                console.log('sleep');
+            }
+        }
+
+        var kambing = new Hewan('Kambing',4);
+        kambing.setName('Domba Garut');
+        console.log(kambing.getName());
+        console.log(kambing.speak());
+
+        var ayam = new Hewan('Ayam',2);
+        console.log(ayam.eat());
+    </script>
+</body>
+</html>

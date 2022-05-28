@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Listener</title>
+</head>
+<body>
+    <button id="btnKlikSaya" type="button">Klik Saya</button>
+    <button id="btnUnklikSaya" type="button">Unklik Saya</button>
+    <img src="../01/images/img1.png" id="img" width="500px">
+    <br>
+    <br>
+    <button id="btn2">Pisah Function</button>
+    <p id="date"></p>
+    <input type="text" id="typeText">
+    <h1><p id="hasilType"></p></h1>
+
+    <script>
+        document.getElementById("btnKlikSaya").addEventListener("click", function(){
+            alert("Saya diklik");
+            document.getElementById("img").style.visibility="hidden";
+        });
+        document.getElementById("btnUnklikSaya").addEventListener("click", function(){
+            document.getElementById("img").style.visibility="visible";
+        });
+
+        function displayDate(){
+            document.getElementById("date").innerHTML = Date();
+        }
+        document.getElementById("btn2").addEventListener("click", displayDate);
+
+        function displayType(){
+            document.getElementById("hasilType").innerHTML = document.getElementById("typeText").value;
+        }
+        document.getElementById("typeText").addEventListener("keypress", displayType);
+        
+    </script>
+</body>
+</html>
