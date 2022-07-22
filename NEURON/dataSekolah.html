@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Sekolah</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0-beta1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+</head>
+<body>
+    <h1 style="text-align: center;">Data Sekolah Seluruh Indonesia</h1>
+    <div class="container">
+        <div class="input-group col-md-3">
+            <span class="=input-group-text" style="width:20%">Pilih Jenis Pencarian:</span>
+            <select class="form-select" aria-label="Default select example" id="jenisPencarian">
+                <option value="1">Seluruh Data</option>
+                <option value="2">Berdasarkan Jenjang</option>
+                <option value="3">Berdasarkan Nama Sekolah</option>
+            </select>
+        </div>
+        <div id="divJenjang" class="input-group col-md-3">
+            <span class="=input-group-text" style="width:20%">Pilih Jenjang Sekolah:</span>
+            <select class="form-select" aria-label="Default select example" id="jenjang">
+                <option value="SD">SD</option>
+                <option value="SMP">SMP</option>
+                <option value="SMA">SMA</option>
+                <option value="SMK">SMK</option>
+            </select>
+        </div>
+        <div id="divNama" class="input-group col-md-3">
+            <span class="=input-group-text" style="width:20%">Nama Sekolah:</span>
+            <input type="text" id="nama" name="nama" placeholder="Nama Sekolah">
+        </div>
+        <div class="input-group">
+            <input type="button" id="btnSearch" name="search" placeholder="Search" value="Cari Sekolah">
+        </div>
+    </div>
+    <div class="container"  id="divListData">
+        <table id="tblListData" style="width:100%; display: none;">
+            <thead>
+            <tr>
+                <th>Jenjang</th>
+                <th>Nama Sekolah</th>
+                <th>Alamat</th>
+                <th>Kecamatan</th>
+                <th>Kabupaten</th>
+                <th>Provinsi</th>
+            </tr>
+            </thead>
+            <tbody id="tblListDataBody">
+                
+            </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+
+        $("#jenisPencarian").change(function() {
+            switch ($(this).val()) {
+                case '1':
+                    $("#divJenjang").hide();
+                    $("#divNama").hide();
+                    break;
+                case '2':
+                    $("#divJenjang").show();
+                    $("#divNama").hide();
+                    break;
+                case '3':
+                    $("#divJenjang").hide();
+                    $("#divNama").show();
+                    break;
+                default:
+                    $("#divJenjang").hide();
+                    $("#divNama").hide();
+            }
+        });
+
+        $("#btnSearch").click(function() {
+            $( "#tblListData" ).show();
+            var jenisPencarian = $( "#jenisPencarian" ).val();
+            var urlApi = 'https://api-sekolah-indonesia.herokuapp.com/sekolah?page=1&perPage=10';
+            if(jenisPencarian == 2){
+                urlApi = 'https://api-sekolah-indonesia.herokuapp.com/sekolah/'+$( "#jenjang" ).val()+'?page=1&perPage=10';
+            }else if(jenisPencarian == 3){
+                urlApi = 'https://api-sekolah-indonesia.herokuapp.com/sekolah/s?sekolah='+$( "#nama" ).val()+'&page=1&perPage=10';
+            }
+
+            document.getElementById("tblListDataBody").innerHTML = "";
+            if ($.fn.DataTable.isDataTable("#tblListData")) {
+                $('#tblListData').DataTable().clear().destroy();
+            }
+
+            $.ajax({
+                url: urlApi,
+                type: "GET",
+                success: function(datax) {
+                    if(datax.dataSekolah == null){
+                        alert("Data tidak ditemukan!");
+                    }
+                    else{	
+                        $.each(datax.dataSekolah, function(i, item){
+                            $('#tblListDataBody').append('<tr>'+
+                                '<td>'+item.bentuk+'</td>'+
+                                '<td>'+item.sekolah+'</td>'+
+                                '<td>'+item.alamat_jalan+'</td>'+
+                                '<td>'+item.kecamatan+'</td>'+
+                                '<td>'+item.kabupaten_kota+'</td>'+
+                                '<td>'+item.propinsi+'</td>'+
+                            '</tr>');
+                        });
+                        $('#tblListData').dataTable({"destroy": true, "searching": false, "paging": false, "info": false});
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
